@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  margin-bottom: 55px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+@media screen and (min-width: 992px) {
+  .header {
+    flex-direction: row;
+  }
+
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

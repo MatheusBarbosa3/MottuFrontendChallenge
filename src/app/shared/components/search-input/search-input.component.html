@@ -1,0 +1,13 @@
+@if (formGroupRef) {
+  <div [formGroup]="formGroupRef">
+    <label class="label" [for]="controlName">{{ label }}</label>
+    <input
+      [id]="controlName"
+      class="field"
+      [type]="type"
+      [formControlName]="controlName"
+      [placeholder]="placeholder"
+      (keyup)="notifyOnType()"
+    />
+  </div>
+}

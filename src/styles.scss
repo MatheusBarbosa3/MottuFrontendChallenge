@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/css2?family=Creepster&family=Poppins&display=swap";
+
+:root {
+  //headers
+  --header-padding: 0 32px;
+  --header-height: 80px;
+  --header-background-color: var(--color-core-foreground);
+  --header-width-adjustment: 64px;
+
+  //colors
+  --color-core-background: #1f1f1f;
+  --color-core-border: #3d3d3d;
+  --color-core-content-low: #a4a4a4;
+  --color-core-foreground: #0a0a0a;
+  --color-neutral-content: #a4a4a4;
+  --color-neutral-surface: #ffffff;
+  --color-neutral-content-onsource: #0a0a0a;
+  --color-neutral-content-higher: #f2f2f2;
+}
+
+html,
+body {
+  width: 100vw;
+  font-family: "Poppins";
+  overflow-x: hidden;
+  background-color: var(--color-core-background);
+}
+
+h1 {
+  font-size: 48px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  display: block;
+  margin: 128px auto 64px;
+  padding: 0 24px;
+  max-width: 720px;
+}
+
+.font-creepster-normal {
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Creepster", system-ui;
+}
+
+.font-custom {
+  color: #01b3cb;
+  -webkit-text-stroke: 2px #addb25;
+}

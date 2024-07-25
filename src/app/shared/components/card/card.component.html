@@ -1,0 +1,20 @@
+<div class="card">
+  <button
+    class="favorite__btn"
+    [ngClass]="{ 'active__btn': isFavorite }"
+    (click)="handleClickFavorite()"
+  >
+    <img
+      class="icon__btn"
+      [src]="isFavorite ? 'assets/icons/heart-fill.svg' : 'assets/icons/heart.svg'"
+      alt="Favoritar"
+    />
+  </button>
+
+  <img [src]="image" [alt]="name" class="card__img" />
+
+  <div class="card__details">
+    <p class="details__name font-creepster-normal">{{ name }}</p>
+    <p class="details__species">{{ species }}</p>
+  </div>
+</div>

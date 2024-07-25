@@ -1,0 +1,27 @@
+<section class="favorites">
+    <h1 class="title font-creepster-normal font-custom">FAVORITOS</h1>
+  
+    <div>
+      <div class="list">
+        @for(character of characters$ | async; track trackById; let i = $index) {
+          <app-card
+            [id]="character.id"
+            [name]="character.name"
+            [image]="character.image"
+            [species]="character.species"
+            [isFavorite]="true"
+            (onClickFavorite)="removeFavorites(i)" 
+          />
+        }
+      </div>
+  
+      @if((characters$ | async)?.length === 0) {
+        <app-feedback
+          title="Parece que você ainda não tem favoritos"
+          description="Volte à página inicial e escolha os melhores para você."
+          [isBackButton]="true"
+        />
+      }
+    </div>
+  </section>
+  

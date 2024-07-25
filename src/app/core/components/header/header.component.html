@@ -1,0 +1,42 @@
+<header class="header">
+  <img
+    class="header__logo"
+    src="../../../../assets/imgs/rick-and-morty.png"
+    alt="Rick And Morty Logo"
+  />
+
+  <nav class="header__nav">
+    <a
+      class="header__btn header__btn--left"
+      routerLink="/home"
+      routerLinkActive="header__btn--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img
+        class="header__btn-icon"
+        src="../../../../assets/icons/home.svg"
+        alt="Ícone do Início"
+      />
+      <span class="header__btn-text">Início</span>
+    </a>
+
+    <a
+      class="header__btn header__btn--right"
+      routerLink="/favorite"
+      routerLinkActive="header__btn--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img
+        class="header__btn-icon"
+        src="../../../../assets/icons/heart-fill.svg"
+        alt="Ícone dos favoritos"
+      />
+      <span class="header__btn-text">Favoritos</span>
+      <div class="header__btn-counter">
+        <span class="header__btn-counter-number">
+          {{ (favorites$ | async)?.length }}
+        </span>
+      </div>
+    </a>
+  </nav>
+</header>

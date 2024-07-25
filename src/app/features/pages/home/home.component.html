@@ -1,0 +1,35 @@
+<section class="characters">
+    <div class="header">
+      <h1 class="header__title font-creepster-normal font-custom">INÍCIO</h1>
+  
+      <form novalidate [formGroup]="characterForm">
+        <app-search-input
+          label="Pesquisar"
+          controlName="name"
+          (onType)="searchByName(characterForm.get('name')?.value)"
+        />
+      </form>
+    </div>
+  
+    <div>
+      <div class="list">
+        @for(character of characters; track character.id; let i = $index) {
+          <app-card
+            [id]="character.id"
+            [name]="character.name"
+            [species]="character.species"
+            [image]="character.image"
+            [isFavorite]="character.isFavorite"
+            (onClickFavorite)="toggleFavorite(i)"
+          />
+        }
+      </div>
+  
+      @if(characterForm.touched && characters.length === 0) {
+        <app-feedback
+          title="Nada foi encontrado"
+          description="Tente realizar uma nova busca."
+        />
+      }
+    </div>
+  </section>

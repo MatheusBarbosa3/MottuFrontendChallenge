@@ -1,0 +1,10 @@
+<div class="feedback__msg center">
+  <h1 class="title">{{ title }}</h1>
+  <h2 class="description">{{ description }}</h2>
+
+  @if(isBackButton) {
+    <button class="back__btn" (click)="navigateToHomePage()">
+      Voltar ao início
+    </button>
+  }
+</div>

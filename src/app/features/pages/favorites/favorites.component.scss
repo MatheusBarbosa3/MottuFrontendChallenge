@@ -1,0 +1,16 @@
+.title {
+  margin-bottom: 55px;
+}
+  
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+  
+@media screen and (min-width: 992px) {
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+  
