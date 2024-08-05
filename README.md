@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Running app in vercel deploy
+
+To run the application in deploy, open the link in your browser: [mottu-frontend-challenge-app](https://mottu-frontend-challenge-gamma.vercel.app/home)
