@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { SearchInputComponent } from '../../../shared/components/search-input/search-input.component';
@@ -7,7 +7,7 @@ import { ICharacter } from '../../../shared/interfaces/character.interface';
 import { CharacterService } from '../../../shared/services/character.service';
 import { FavoritesService } from '../../../core/store/favorites.service';
 import { ICharacterHistoric } from '../../../shared/interfaces/character-historic.interface';
-import { debounceTime } from 'rxjs';
+import { debounceTime, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +22,7 @@ import { debounceTime } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public characterForm: FormGroup;
 
   public characters: ICharacter[] = [];
@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   public allCharacters: ICharacter[] = [];
   
   public historic: ICharacterHistoric[] = [];
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,6 +54,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+  
   private loadAllCharacters(): void {
     this.characterService.getAllCharacters().subscribe({
       next: (characters: ICharacter[]) => {
@@ -79,10 +86,12 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.characterService.getByName(name).subscribe({
-      next: (res: ICharacter[]) => this.processSuccessSearchByName(name, res),
-      error: () => (this.characters = [])
-    });
+    this.characterService.getByName(name)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res: ICharacter[]) => this.processSuccessSearchByName(name, res),
+        error: () => (this.characters = [])
+      });
   }
 
   private processSuccessSearchByName(
